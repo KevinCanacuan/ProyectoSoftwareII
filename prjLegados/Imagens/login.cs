@@ -7,6 +7,6 @@ namespace prjLegados.Imagens
 {
     public class Class1
     {
-        //sdsds
+        //steven
     }
 }
