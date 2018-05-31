@@ -1,0 +1,61 @@
+@model prjLegados.Models.ClsContainer
+<div>
+    <h1 class="text-center">Eliminar Agrupacion</h1>
+    <p>
+        Para la eliminacion debe escoger una agrupación
+    </p>
+    <label>Nombre de la Agrupación</label>
+    <div class="Control">
+        <select class="form-control" id="selContainer">
+            <option>
+                Seleccione el Contenedor
+            </option>
+            @foreach (var item in Model.lstContainers)
+            {
+                <option>
+                    @Html.DisplayFor(modelItem => item.fntFullNameStr)
+                </option>
+            }
+
+        </select>
+    </div>
+    <a href="#" class="btn btn-info" id="btnDeleteGroup">Eliminar</a>
+
+
+</div>
+
+<script>
+
+    $("#btnDeleteGroup").click(function () {
+        if (validarDelete()!=true) {
+            alert("Debe seleccionar un container válido");
+        } else {
+            $.ajax({
+                type: "POST",
+                url: "/Container/dltContainer",
+                data: '{nombre: "' + $("#selContainer").val() + '" }',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    alert("Borrado con exito");
+                    window.location.href = "/Container/Container";
+                    $("#MyModalDelete").modal("hide");
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        }
+        
+    });
+    function validarDelete() {
+        if ($("#selContainer").val() =="Seleccione el Contenedor"){
+            return false;
+        } else {
+            return true;
+        }
+    };
+</script>

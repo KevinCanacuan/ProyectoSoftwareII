@@ -1,0 +1,38 @@
+﻿@model IEnumerable<prjLegados.Data.Structure.Container>
+@{
+    ViewBag.Tittle = "Submit";
+}
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+<div class="modal fade" id="MyModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h4 id="ModalTitle"></h4>
+            </div>
+            <div class="modal-body">
+                <form id="form">
+                    <fieldset id="SubmitForm">
+                        @*@Html.HiddenFor(model => model. , new { @id = "StuId" })*@
+                        @*<div class="form-group">
+                            @Html.TextBoxFor(m => m. model => model. , new { @id = "StuName", @class = "form-control", @placeholder = "Name*" })
+                        </div>  
+                        <div class="form-group">
+                            @Html.TextBoxFor(m => m.Email, new { @id = "Email", @class = "form-control", @placeholder = "Email*" })
+                        </div>
+                        <div class="form-group">
+                            @Html.DropDownListFor(m => m.DepartmentId, ViewBag.ListOfDepartment as SelectList, "--Select Dept--", new { @id = "DropDwn", @class = "form-control" })
+                        </div>*@  
+                        <div class="form-group">
+                            <a href="#" class="btn btn-block btn-danger" id="sveContainer">Save</a>
+                        </div>
+
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

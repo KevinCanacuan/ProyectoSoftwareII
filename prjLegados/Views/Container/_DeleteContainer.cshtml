@@ -1,0 +1,90 @@
+﻿@model prjLegados.Models.ClsContainer
+<div>
+    <h1 class="text-center">Eliminar Agrupación</h1>
+    <p>
+        Para la eliminación debe escoger una agrupación
+    </p>
+    <label>Nombre de la Agrupación</label>
+    <div class="Control">
+        <select class="form-control" id="selContainer">
+            <option>
+                Seleccione el Contenedor
+            </option>
+            @foreach (var item in Model.lstContainers)
+            {
+                <option>
+                    @Html.DisplayFor(modelItem => item.fntFullNameStr)
+                </option>
+            }
+
+        </select>
+    </div>
+    <div id="Confirmation" class="Control" style="display:none">
+        <p>Se eliminará todo el registro con la información respectiva.</p>
+        <label>Desea Continuar:</label>
+        <a href="#" class="btn btn-info" id="btnYes">Si</a>
+        <a href="#" class="btn btn-info" id="btnNo">No</a>
+    </div>
+    <div class="Control" id="btnDeleteComplete" style="display:none">
+        <a href="#" class="btn btn-info" id="btnDeleteGroup">Eliminar</a>
+        <a href="#" class="btn btn-primary" id="ExitDelete">Salir</a>
+    </div>
+    
+
+
+</div>
+
+<script>
+    $("#btnYes").click(function () {
+        $("#btnDeleteComplete").show();
+    });
+
+    $("#btnNo").click(function () {
+        window.location.href = "/Container/Container";
+        $("#MyModalDelete").modal("hide");
+    });
+
+    $("#ExitDelete").click(function () {
+        window.location.href = "/Container/Container";
+        $("#MyModalDelete").modal("hide");
+    });
+    
+
+    $("#selContainer").change(function(){
+        $("#Confirmation").show();
+    });
+
+
+    $("#btnDeleteGroup").click(function () {
+        if (validarDelete() != true) {
+            alert("Debe seleccionar un container válido");
+        } else {
+            $.ajax({
+                type: "POST",
+                url: "/Container/dltContainer",
+                data: '{nombre: "' + $("#selContainer").val() + '" }',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    alert("Borrado con éxito");
+                    window.location.href = "/Container/Container";
+                    $("#MyModalDelete").modal("hide");
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        }
+
+    });
+    function validarDelete() {
+        if ($("#selContainer").val() == "Seleccione el Contenedor") {
+            return false;
+        } else {
+            return true;
+        }
+    };
+</script>

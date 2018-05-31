@@ -1,0 +1,143 @@
+$(function () {
+    var lastsel2;
+    jQuery("#rowed5").jqGrid({
+        datatype: "local", height: 250, colNames: [' ', 'ID', 'Nombre', 'Nombre_Alterno', 'Tipo_Archivo', 'Empresa', 'Container', 'Aplicativo', 'Modulo', 'Fecha_Carga', 'Año_Referencial', 'Mes_Referencial', 'Path', 'Descripcion'],
+        colModel: [{ name: 'myac', width: 80, fixed: true, sortable: false, resize: false, formatter: 'actions', formatoptions: { keys: true } },
+        {
+                name: 'id', index: 'id', width: 30, sorttype: "int", editable: false
+        },
+        {
+            name: 'Nombre', index: 'Nombre', width: 150, editable: false,
+            editoptions: { size: "20", maxlength: "30" }
+        },
+        {
+            name: 'Nombre_Alterno', index: 'Nombre_Alterno', width: 100, editable: true,
+            editoptions: { size: "20", maxlength: "30" }
+        },
+        {
+            name: 'Tipo_Archivo', index: 'Tipo_Archivo', width: 30, editable: false,
+            editoptions: { size: "20", maxlength: "30" }
+        },
+        {
+            name: 'Empresa', index: 'Empresa', width: 80, editable: false,
+            editoptions: { size: "20", maxlength: "30" }
+        },
+        {
+            name: 'Container', index: 'Container', width: 80, editable: true, edittype: 'select',
+            editoptions: { value: "1:Manta" }
+        },
+        {
+            name: 'Aplicativo', index: 'Aplicativo', width: 70, editable: true, edittype: 'select',
+            editoptions: { value: "1:BAANIV;2:DMS;3:ZEUZ" }
+        },
+        {
+            name: 'Modulo', index: 'Modulo', width: 70, editable: true,
+            editoptions: { size: "20", maxlength: "30" }
+        },
+        {
+            name: 'Fecha_Carga', index: 'Fecha_Carga', width: 100, editable: false,
+            editoptions: { size: "20", maxlength: "30" }
+        },
+        {
+            name: 'Año_Referencial', index: 'Año_Referencial', width: 100, editable: true,
+            editoptions: { size: "20", maxlength: "30" }
+        },
+        {
+            name: 'Mes_Referencial', index: 'Mes_Referencial', width: 100, editable: true,
+            editoptions: { size: "20", maxlength: "30" }
+        },
+        {
+            name: 'Path', index: 'Path', width: 100, editable: true, hidden: true,
+            editoptions: { size: "20", maxlength: "30" }
+        },
+        {
+            name: 'Descripcion', index: 'Descripcion', width: 200, sortable: false, editable: true,
+            edittype: "textarea",
+            editoptions: { rows: "2", cols: "10" }
+        }],
+        //onSelectRow: function (id) {
+        //    if (id && id !== lastsel2) {
+        //        jQuery('#rowed5').jqGrid('restoreRow', lastsel2);
+        //        jQuery('#rowed5').jqGrid('editRow', id, true); lastsel2 = id;
+
+        //    }
+        //},
+        caption: "Input Types"
+    });
+    jQuery("#rowed5").jqGrid('navGrid', '#mensaje', { edit: false, add: false, del: false });
+    //var gr = jQuery("#rowed5").jqGrid('getGridParam', 'selrow');
+    //jQuery("#delgrid").jqGrid('delGridRow', gr, { reloadAfterSubmit: false });
+    var nameFile;
+    var mydata2;
+    var lstPath;
+    var dt = new Date();
+    var Path;
+    var fechaCarga = dt.getDate() + "/" + (dt.getMonth() + 1) + "/" + dt.getFullYear();
+    $(function () {
+        $("#fileInput").on("change", function () {
+            lstPath = $("#fileInput").val();
+            Path = lstPath.split(", ");
+            var archivos = document.getElementById("fileInput").files;
+            for (var i = 0; i < archivos.length; i++) {
+                nameFile = archivos[i].name;
+                var tipoArchivo = fntencontrarTipoArchivo(nameFile);
+                var altername = fntEliminarExtension(nameFile);
+                var idTabla = i + 1;
+                mydata2 = [{ id: idTabla, Nombre: nameFile, Nombre_Alterno: altername, Tipo_Archivo: tipoArchivo, Empresa: "MARESA", Container: $("#selContainer").val(), Aplicativo: $("#selAplication").val(), Fecha_Carga: fechaCarga, Año_Referencial: dt.getFullYear(), Mes_Referencial: dt.getMonth() + 1, Path: Path[i] }];
+                jQuery("#rowed5").jqGrid('addRowData', mydata2.id, mydata2);
+            }
+
+        });
+    });
+});
+
+function fntencontrarTipoArchivo(cadena) {
+    var result;
+    for (var i = 0; i < cadena.length; i++) {
+        if (cadena[i] == ".") {
+            result = cadena.substring(i + 1);
+        }
+    }
+    return result;
+};
+
+function fntEliminarExtension(cadena) {
+    var result;
+    for (var i = 0; i < cadena.length; i++) {
+        if (cadena[i] == ".") {
+            result = cadena.substring(0, i);
+        }
+    }
+    return result;
+};
+$("#DeleteGrid").click(function () {
+    $("#rowed5").jqGrid("clearGridData");
+});
+
+$("#btnUploadFiles").click(function () {
+    var countCols1 = jQuery('#rowed5').jqGrid('getCol', "Nombre");
+    var countCols2 = jQuery('#rowed5').jqGrid('getCol', "Nombre_Alterno");
+    alert(countCols2);
+    var countCols3 = jQuery('#rowed5').jqGrid('getCol', "Tipo_Archivo");
+    var countCols4 = jQuery('#rowed5').jqGrid('getCol', "Empresa");
+    var countCols5 = jQuery('#rowed5').jqGrid('getCol', "Container");
+    var countCols6 = jQuery('#rowed5').jqGrid('getCol', "Aplicativo");
+    var countCols7 = jQuery('#rowed5').jqGrid('getCol', "Modulo");
+    var countCols8 = jQuery('#rowed5').jqGrid('getCol', "Fecha_Carga");
+    var countCols9 = jQuery('#rowed5').jqGrid('getCol', "Año_Referencial");
+    var countCols10 = jQuery('#rowed5').jqGrid('getCol', "Mes_Referencial");
+    var countCols11 = jQuery('#rowed5').jqGrid('getCol', "Path");
+    var countCols12 = jQuery('#rowed5').jqGrid('getCol', "Descripcion");
+    $.ajax({
+        type: "POST",
+        url: "/Container/fntsubirNewArchivos",
+        data: { data: lstObjetosDatos },
+        success: function (result) {
+            alert(result);
+            window.location.href = "/Container/Container";
+            $("#MyModalUpload").modal("hide").remove();
+
+        }
+    });
+});
+

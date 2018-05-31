@@ -1,0 +1,70 @@
+@model prjLegados.Models.ClsContainer
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1 class="text-center">Subida de Archivos</h1>
+<div class="Control">
+    <table>
+        <tr>
+            <td>Agrupación</td>
+            <td>
+                <select class="form-control" id="cbxContainer">
+                    <option>
+                        Seleccione el Contenedor
+                    </option>
+                    @foreach (var item in Model.lstContainers)
+            {
+                <option>
+                    @Html.DisplayFor(modelItem => item.fntFullNameStr)
+                </option>
+    }
+                </select>
+            </td>
+            <td>Aplicación</td>
+            <td>
+                <select class="form-control" id="cbxAplication">
+                    <option>
+                        Seleccione aplicación
+                    </option>
+                    @foreach (var item in Model.usrUser.fntAplicationsLst)
+    {
+                <option>
+                    @Html.DisplayFor(modelItem => item)
+                </option>
+}
+                </select>
+            </td>
+</tr>
+    </table>
+    
+</div>
+    <div class="Control">
+        <input type="file" accept=".pdf" required name="fileInput[]" id="fileInput" multiple />
+    </div>
+    <div class="Control">
+        <a href="#" class="btn btn-info" id="DeleteGrid">Borrar</a>
+    </div>
+    <div>
+        <table id="rowed5"></table>
+        
+    </div>
+    <div id="mensaje"></div>
+    <div class="Control">
+        <a href="#" class="btn btn-info" id="btnUploadFiles">Subir</a>
+    </div>
+
+    @section scripts{
+        <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+        <link href="~/Content/jquery.jqGrid/ui.jqgrid.css" rel="stylesheet" />
+        <script src="~/Scripts/jquery-ui-1.10.0.js"></script>
+        <script src="~/Scripts/i18n/grid.locale-en.js"></script>
+        <script src="~/Scripts/jquery.jqGrid.min.js"></script>
+        <script src="~/Scripts/script.js"></script>
+        <script>
+
+
+
+        </script>
+    }
+

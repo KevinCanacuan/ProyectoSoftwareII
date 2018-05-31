@@ -1,0 +1,22 @@
+﻿@model IEnumerable<prjLegados.Models.Archivo>
+<label>Hola Mundo </label>
+<table class="table table-striped" id="tablaArchivos">
+    <tr>
+        <th>
+            Nombre
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre)
+            </td>
+
+
+        </tr>
+    }
+
+</table>
+

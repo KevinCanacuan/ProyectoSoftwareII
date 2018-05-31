@@ -1,0 +1,21 @@
+﻿@model IEnumerable<prjLegados.Data.Structure.BlobStructure>
+
+<table class="table table-striped" id="tablaBlobs">
+    <tr>
+        <th>
+            Nombre
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+    
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.fntNameStr)
+        </td>
+        
+
+    </tr>
+    }
+
+</table>

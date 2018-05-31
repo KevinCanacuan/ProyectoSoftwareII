@@ -1,0 +1,325 @@
+@model prjLegados.Models.ClsContainer
+
+@{
+    ViewBag.Title = "Administración Blobs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+
+<h2 class=" text-center">Administración de Blobs</h2>
+<div class="MainContainer">
+    <div id="Botones" class=" text-center">
+        <a href="#" class="btn btn-group" id="NewContainer" onclick="AddNewContainer()">Nuevo</a>
+        <a href="#" class="btn btn-group" id="DeleteContainer">Borrar</a>
+        <a href="#" class="btn btn-group" id="Upload">Subir Archivos</a>
+    </div> <br />
+    <div id="Filtros">
+        <table id="Tabla">
+            <tr id="Columna">
+                <td id="Fila"><label>Agrupación</label></td>
+                <td id="Fila">
+                    <select class="form-control" id="cbxContainer">
+                        <option>
+                            Seleccione el Contenedor
+                        </option>
+                        @foreach (var item in Model.lstContainers)
+                        {
+                            <option>
+                                @Html.DisplayFor(modelItem => item.fntFullNameStr)
+                            </option>
+                        }
+                    </select>
+                </td>
+                <td id="Fila">
+                    <label>Aplicación</label>
+                </td>
+                <td id="Fila">
+                    <select class="form-control" id="cbxAplication">
+                        <option>Seleccione Aplicación</option>
+                        @foreach (var item in Model.usrUser.fntAplicationsLst)
+                        {
+                            <option>
+                                @Html.DisplayFor(modelItem => item)
+                            </option>
+                        }
+                    </select>
+                </td>
+                <td id="Fila">
+                    <label>Ingrese Búsqueda</label>
+                </td>
+                <td id="Fila">
+                    <input type="text" class="form-control-static" id="buscar">
+                    <a href="#" class="btn btn-info" id="BuscarBlobs">Buscar</a>
+                </td>
+            </tr>
+            <tr id="Columna">
+                <td id="Fila">
+                    <label>Módulo</label>
+                </td>
+                <td id="Fila">
+                    <select class="form-control" id="cbxFilterText">
+                        <option>Seleccione Opción</option>
+                        <option>Igual que</option>
+                        <option>No es igual que</option>
+                        <option>Empieza con</option>
+                        <option>Termina con</option>
+                        <option>Mayor que</option>
+                        <option>Menor que</option>
+                    </select>
+                </td>
+                <td id="Fila">
+                    <input type="text" name="txtFilterModule" id="txtFilterModule" />
+                </td>
+            </tr>
+            <tr id="Columna">
+                <td id="Fila">
+                    <label>Año de Referencia</label>
+                </td>
+                <td id="Fila">
+                    <select class="form-control" id="cbxFilterAnio">
+                        <option>Seleccione Opción</option>
+                        <option>Igual que</option>
+                        <option>No es igual que</option>
+                        <option>Empieza con</option>
+                        <option>Termina con</option>
+                        <option>Mayor que</option>
+                        <option>Menor que</option>
+                    </select>
+                </td>
+                <td id="Fila">
+                    <input type="text" name="txtAnio" id="txtAnio" class="form-control-static" />
+                </td>
+            </tr>
+            <tr id="Columna">
+                <td id="Fila">
+                    <label>Mes de Referencia</label>
+                </td>
+                <td id="Fila">
+                    <select class="form-control" id="cbxFilterText">
+                        <option>Seleccione Opción</option>
+                        <option>Igual que</option>
+                        <option>No es igual que</option>
+                        <option>Empieza con</option>
+                        <option>Termina con</option>
+                        <option>Mayor que</option>
+                        <option>Menor que</option>
+                    </select>
+                </td>
+                <td id="Fila">
+                    <select class="form-control" id="cbxFilterMes">
+                        <option>Enero</option>
+                        <option>Febrero</option>
+                        <option>Marzo</option>
+                        <option>Abril</option>
+                        <option>Mayo</option>
+                        <option>Junio</option>
+                        <option>Julio</option>
+                        <option>Agosto</option>
+                        <option>Septiembre</option>
+                        <option>Octubre</option>
+                        <option>Noviembre</option>
+                        <option>Diciembre</option>
+                    </select>
+                </td>
+
+            </tr>
+        </table>
+    </div>
+    <div class="Control" id="campos">
+    </div>
+    <div id="">
+
+    </div>
+    <div id="divTabla">
+    </div>
+</div>
+
+@*Modal Nuevo Contenedor*@
+
+<div class="modal fade" id="MyModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+            </div>
+            <div class="modal-body">
+                <form id="form">
+                    <fieldset id="SubmitForm">
+                        <div class="form-group">
+                            <h4 id="ModalTitle" class="text-center">Nuevo Contenedor</h4>
+                            <label>Nombre del Contenedor</label>
+                            @Html.TextBox("txtNombreContainer")
+                        </div>
+
+                        <div class="form-group">
+                            <a href="#" class="btn btn-primary" id="SaveContainer">Guardar</a>
+                            <a href="#" class="btn btn-primary" id="ExitContainer">Salir</a>
+                        </div>
+
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Modal Nuevo Subir Archivo*@
+<div class="modal fade" id="MyModalUpload">
+    <div class="modal-dialog" id="MyModalUploadDialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h4 id="ModalTitleUpload"></h4>
+            </div>
+            <div class="modal-body" id="modal-body">
+            </div>
+        </div>
+    </div>
+</div>
+@*Modal Eliminar Agrupacion*@
+<div class="modal fade" id="MyModalDelete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h4 id="ModalTitle"></h4>
+            </div>
+            <div class="modal-body" id="modal-content">
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Modal New Upload*@
+<div class="modal fade" id="MyModalNewUpload">
+    <div class="modal-dialog" id="ModalDialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h4 id="ModalTitle"></h4>
+            </div>
+            <div class="modal-body" id="modalContent">
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+
+<script>
+
+       
+                    function AddNewContainer() {
+                        $("#MyModal").modal();
+        };
+        function validarNuevoContenedor() {
+            if ($("#txtNombreContainer").val() == "") {
+                return false;
+            } else {
+                return true;
+            }
+        };
+
+        $("#SaveContainer").click(function () {
+            if (validarNuevoContenedor() != true) {
+                alert("Debe digitar el nombre del contenedor");
+            } else {
+                $.ajax({
+                    type: "POST",
+                    url: "/Container/sveContainer",
+                    data: '{name: "' + $("#txtNombreContainer").val() + '" }',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        alert(response.mensaje);
+                        window.location.href = "/Container/Container";
+                        $("#MyModal").modal("hide");
+
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            }
+        });
+
+                    $("#ExitContainer").click(function () {
+                        $.ajax({
+                            success: function () {
+                                $("#MyModal").modal("hide");
+                            }
+                        });
+                    });
+
+                    $("#DeleteContainer").click(function () {
+                        var ajaxCallURL = "/Container/DeleteContainer";
+                        var options = {
+                            "backdrop": "static",
+                            keyboard: true
+                        };
+                        $.ajax({
+                            type: "GET",
+                            url: ajaxCallURL,
+                            contentType: "application/json; charset=utf-8",
+                            datatype: "json",
+                            success: function (data) {
+                                $("#MyModalDelete").modal("show");
+                                $("#modal-content").html(data);
+                            }
+                        });
+                    });
+                    $("#BuscarBlobs").click(function () {
+                        var comprobar = Comprobar();
+                        if (comprobar != true) {
+                            alert("Debe seleccionar los campos respectivos");
+                        } else {
+                            $("#labelTitulo").remove();
+                            $("#tablaBlobs").remove();
+                            var mitexto = $("#sel1 option:selected").text();
+                            campo = '<label id="labelTitulo">Contenedor ' + mitexto;
+                            $("#campos").append(campo);
+                            $(this).prop("disabled", "disabled");
+                            var url = "@Url.Action("bscBlobs", "Container")";
+                            var NombreContainer = $("#sel1").val();
+                            var data = { nombreContainer: NombreContainer };
+                            $.get(url, data).done(function (data) {
+
+                                $("#divTabla").append(data);
+                            }).fail("fallo");
+                        }
+
+
+                    });
+
+                    function Comprobar() {
+                        var container = $("#cbxContainer").val();
+                        var aplication = $("#cbxAplication").val();
+                        if (container == "Seleccione el Contenedor" || aplication == "Seleccione Aplicación") {
+                            return false;
+                        } else {
+                            return true;
+                        }
+                    };
+                    $("#Upload").click(function () {
+                        $.ajax({
+                            type: "GET",
+                            url: "/Container/NewUpload",
+                            success: function (data) {
+                                //$("#ModalTitleUpload").html("Upload");
+                                //$("#modal-body").html(data);
+                                //$("#MyModalUpload").modal("show");
+
+                                $("#modalContent").html(data);
+                                $("#MyModalNewUpload").modal("show");
+                            }
+
+                        });
+                    });
+
+
+</script>
+}

@@ -1,0 +1,89 @@
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.Control {
+    margin: 5px;
+}
+
+#Botones {
+    margin: 30px;
+    position: static;
+    /*height:40px;*/
+}
+
+#NewContainer {
+    text-align: center;
+    background-color: #F18924;
+    color: white;
+    float: left;
+    margin: 5px;
+}
+
+#DeleteContainer {
+    text-align: center;
+    background-color: #F18924;
+    color: white;
+    float: left;
+    margin: 5px;
+}
+#BuscarBlobs {
+    text-align: center;
+    background-color: #F18924;
+    float: right;
+    margin: 1px;
+}
+
+#Columna {
+    margin: 3px;
+}
+#Fila {
+    margin: 7px;
+}
+#Tabla {
+    margin: 7px;
+} 
+#Upload {
+    text-align: center;
+    background-color: #F18924;
+    color: white;
+    float: left;
+    margin: 5px;
+}
+
+#Filtros {
+    background-color:black;
+    color:white;
+    margin: 30px;
+}
+
+#ModalDialog {
+    height: 100px;
+    width: 1300px;
+}
+
+#MyModalUploadDialog {
+    height: 100px;
+    width: 1200px;
+}

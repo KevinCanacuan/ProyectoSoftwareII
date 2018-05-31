@@ -1,0 +1,173 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.Control {
+    margin: 5px;
+}
+
+#Botones {
+    margin: 30px;
+    position: static;
+    /*height:40px;*/
+}
+
+#NewContainer {
+    text-align: center;
+    background-color: #F18924;
+    color: black;
+    float: left;
+    margin: 5px;
+}
+
+#DeleteContainer {
+    text-align: center;
+    background-color: #F18924;
+    color: black;
+    float: left;
+    margin: 5px;
+}
+
+#BuscarBlobs {
+    text-align: center;
+    background-color: #F18924;
+    float: right;
+    margin: 1px;
+    color: black;
+}
+
+#Columna {
+    margin: 3px;
+}
+
+#Fila {
+    margin: 7px;
+}
+
+#Tabla {
+    margin: 7px;
+}
+
+#Upload {
+    text-align: center;
+    background-color: #F18924;
+    color: black;
+    float: left;
+    margin: 5px;
+}
+
+#Filtros {
+    background-color: gainsboro;
+    color: black;
+    margin: 30px;
+}
+
+#panelAdvanced {
+    background-color: gainsboro;
+    color: black;
+    /*margin: 30px;*/
+}
+
+#ModalDialog {
+    height: 100px;
+    width: 1300px;
+}
+
+#MyModalUploadDialog {
+    height: 100px;
+    width: 1200px;
+}
+
+#BuscarBlobs {
+    background-color: #F18924;
+    color: black;
+    border-top-color: #F18924;
+    border-right-color: #F18924;
+    border-bottom-color: #F18924;
+    border-left-color: #F18924;
+}
+
+#SaveContainer {
+    background-color: #F18924;
+    color: black;
+    border-top-color: #F18924;
+    border-right-color: #F18924;
+    border-bottom-color: #F18924;
+    border-left-color: #F18924;
+}
+
+#ExitContainer {
+    background-color: #F18924;
+    color: black;
+    border-top-color: #F18924;
+    border-right-color: #F18924;
+    border-bottom-color: #F18924;
+    border-left-color: #F18924;
+}
+
+#btnDeleteGroup, #btnYes, #btnNo, #ExitDelete {
+    background-color: #F18924;
+    color: black;
+    border-top-color: #F18924;
+    border-right-color: #F18924;
+    border-bottom-color: #F18924;
+    border-left-color: #F18924;
+}
+
+#DeleteGrid {
+    background-color: #F18924;
+    color: black;
+    border-top-color: #F18924;
+    border-right-color: #F18924;
+    border-bottom-color: #F18924;
+    border-left-color: #F18924;
+}
+
+#DeleteRow {
+    background-color: #F18924;
+    color: black;
+    border-top-color: #F18924;
+    border-right-color: #F18924;
+    border-bottom-color: #F18924;
+    border-left-color: #F18924;
+}
+
+
+#btnUploadFiles {
+    background-color: #F18924;
+    color: black;
+    border-top-color: #F18924;
+    border-right-color: #F18924;
+    border-bottom-color: #F18924;
+    border-left-color: #F18924;
+}
+
+#messageFile {
+    color:red;
+}
+
+#ModalDialogFile {
+    height:500px;
+    width: 500px;
+}

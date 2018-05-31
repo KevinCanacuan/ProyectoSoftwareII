@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.10
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "prjLegados", "prjLegados\prjLegados.csproj", "{BCC3779F-B899-4BC8-BDD2-052DDFC2FF5C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "prjLegados.Data", "prjLegados.Data\prjLegados.Data.csproj", "{77D9BB20-7742-451F-8F7B-98D348E32B85}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "prjLegados.AzureStorage", "prjLegados.AzureStorage\prjLegados.AzureStorage.csproj", "{B12817F4-7F81-464F-92EE-9531E1452DCE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "prjLegados.AppConsole", "prjLegados.AppConsole\prjLegados.AppConsole.csproj", "{9F32E7E6-12A1-46D1-BBA1-3D0DCC4C4E44}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BCC3779F-B899-4BC8-BDD2-052DDFC2FF5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCC3779F-B899-4BC8-BDD2-052DDFC2FF5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCC3779F-B899-4BC8-BDD2-052DDFC2FF5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCC3779F-B899-4BC8-BDD2-052DDFC2FF5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77D9BB20-7742-451F-8F7B-98D348E32B85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77D9BB20-7742-451F-8F7B-98D348E32B85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77D9BB20-7742-451F-8F7B-98D348E32B85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77D9BB20-7742-451F-8F7B-98D348E32B85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B12817F4-7F81-464F-92EE-9531E1452DCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B12817F4-7F81-464F-92EE-9531E1452DCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B12817F4-7F81-464F-92EE-9531E1452DCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B12817F4-7F81-464F-92EE-9531E1452DCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F32E7E6-12A1-46D1-BBA1-3D0DCC4C4E44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F32E7E6-12A1-46D1-BBA1-3D0DCC4C4E44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F32E7E6-12A1-46D1-BBA1-3D0DCC4C4E44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F32E7E6-12A1-46D1-BBA1-3D0DCC4C4E44}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0C4E5FC5-31DB-4A4D-94F1-05B4F637B5CD}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://ingenesis365.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = prjLegados.AppConsole\\prjLegados.AppConsole.csproj
+		SccProjectName1 = prjLegados.AppConsole
+		SccLocalPath1 = prjLegados.AppConsole
+		SccProjectUniqueName2 = prjLegados.AzureStorage\\prjLegados.AzureStorage.csproj
+		SccProjectName2 = prjLegados.AzureStorage
+		SccLocalPath2 = prjLegados.AzureStorage
+		SccProjectUniqueName3 = prjLegados.Data\\prjLegados.Data.csproj
+		SccProjectName3 = prjLegados.Data
+		SccLocalPath3 = prjLegados.Data
+		SccProjectUniqueName4 = prjLegados\\prjLegados.csproj
+		SccProjectName4 = prjLegados
+		SccLocalPath4 = prjLegados
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,129 @@
+﻿@model prjLegados.Models.ClsContainer
+
+<div class="row">
+    <div class="col-sm-8">
+        <form action="" id="form1">
+            Seleccione Los Archivos:
+            <input type="file" id="fileInput" multiple />
+            <input type="button" id="fileButton" value="Upload Files" /><br />
+            <div>
+                <ul id="listas"></ul>
+            </div>
+        </form>
+    </div>
+    <div class="col-sm-4">
+        <label>Metadata</label>
+
+        <div class="Control">
+            <select class="form-control" id="selContainer">
+                <option>
+                    Seleccione el Contenedor
+                </option>
+                @foreach (var item in Model.lstContainers)
+                {
+                    <option>
+                        @Html.DisplayFor(modelItem => item.fntFullNameStr)
+                    </option>
+                }
+
+            </select>
+        </div>
+        <div class="Control">
+            <select class="form-control" id="selAplication">
+                @foreach (var item in Model.usrUser.fntAplicationsLst)
+                {
+                    <option>
+                        @Html.DisplayFor(modelItem => item)
+                    </option>
+                }
+            </select>
+            <div class="Control">
+                <table>
+                    <tr>
+                        <td>Storage Content Type:</td>
+                        <td><input type="text" name="txtStorageContentType" id="txtStorageContentType" value="" /></td>
+                    </tr>
+                    <tr>
+                        <td>Storage Name:</td>
+                        <td><input type="text" name="txtStorageName" id="txtStorageName" value="" /></td>
+                    </tr>
+                    <tr>
+                        <td>Content Type:</td>
+                        <td><input type="text" name="txtContentType" id="txtContentType" value="" /></td>
+                    </tr>
+                    <tr>
+                        <td>Language:</td>
+                        <td><input type="text" name="txtLanguage" id="txtLanguage" value="" /></td>
+                    </tr>
+                    <tr>
+                        <td>Autor:</td>
+                        <td><input type="text" name="txtAutor" id="txtAutor" value="" /></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+ </div>
+    <input type="button" id="btnSubirArchivos" value="Subir Archivos" />
+    <script>
+        $(document).ready(function () {
+            $("#fileButton").click(function () {
+                var files = $("#fileInput").get(0).files;
+                var fileData = new FormData();
+                for (var i = 0; i < files.length; i++) {
+                    fileData.append("fileInput", files[i]);
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Container/UploadFiles",
+                    dataType: "json",
+                    contentType: false,
+                    processData: false,
+                    data: fileData,
+                    success: function (result, status, xhr) {
+                        for (var i = 0; i < result.length; i++) {
+                            $("#listas").append("<li>" + result[i] + "</li>");
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        alert(status);
+                    }
+                });
+            });
+
+            $(document).ajaxStart(function () {
+                $("#fileButton").prop('disabled', true);
+            });
+
+            $(document).ajaxStop(function () {
+                $("#fileButton").prop('disabled', false);
+                $("#fileInput").val("");
+            });
+
+        });
+
+
+        $("#btnSubirArchivos").click(function () {
+            var datosFormulario = $("#txtStorageContentType").val() + "," + $("#txtStorageName").val() + "," + $("#txtContentType").val() + "," + $("#txtLanguage").val() + "," + $("#txtAutor").val();
+            var aplicacion = $("#selAplication").val();
+            var seleccion = $("#selContainer").val();
+            var lstArchivo;
+            $("#listas li").each(function () {
+                lstArchivo += $(this).text() + ",";
+            });
+            $.ajax({
+                type: "POST",
+                url: "/Container/fntsubirArchivos",
+                data: { strDatosMetadata: datosFormulario, strNombreAplicacion: aplicacion, strArchivos: lstArchivo, strNombreContainer: seleccion },
+                success: function (result) {
+                    alert(result);
+                    window.location.href = "/Container/Container";
+                    $("#MyModalUpload").modal("hide").remove();
+
+                }
+            });
+        });
+
+
+    </script>
